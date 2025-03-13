@@ -122,7 +122,9 @@ for image in os.listdir(dir):
     else:
         print(f"Image: {image} - No objects detected")
         
-    hong_kong_road_data.append({"@timestamp": current_iso_date ,"Key": image_file_name, "region": region, "district": district, "detail_location": description, "image_item": image_return_data, "geolocation": {"lat": latitude, "lon": longitude} })
+    vehicles_count = image_return_data.get("car", 0) + image_return_data.get("truck", 0) + image_return_data.get("bus", 0)
+        
+    hong_kong_road_data.append({"@timestamp": current_iso_date ,"Key": image_file_name, "region": region, "district": district, "detail_location": description, "vehicles_count": vehicles_count, "image_item": image_return_data, "geolocation": {"lat": latitude, "lon": longitude} })
 
 #print(hong_kong_road_data)
 
